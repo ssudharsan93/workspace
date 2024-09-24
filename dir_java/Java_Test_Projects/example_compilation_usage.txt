@@ -1,4 +1,0 @@
-javac -d build src/com/ListPractice/ListPractice.java
-jar cfm bin/ListPractice.jar manifest.txt -C build/ .
-java -jar bin/ListPractice.jar
-

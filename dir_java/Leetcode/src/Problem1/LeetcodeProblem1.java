@@ -1,8 +1,8 @@
-package leetcode;
+package src.Problem1;
 
 import java.util.HashMap;
 
-public class leetcodeProblem1 {
+public class LeetcodeProblem1 {
 	public static void main(String[] args) {
 		int [] testcase1 = {-5, 6, 7, 8, -11, 2};
 		int target1 = 9;
