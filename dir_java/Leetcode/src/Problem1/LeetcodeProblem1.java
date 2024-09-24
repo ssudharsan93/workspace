@@ -2,7 +2,7 @@ package src.Problem1;
 
 import java.util.HashMap;
 
-public class LeetcodeProblem1 {
+public class Solution {
 	public static void main(String[] args) {
 		int [] testcase1 = {-5, 6, 7, 8, -11, 2};
 		int target1 = 9;
