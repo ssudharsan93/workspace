@@ -1,5 +1,7 @@
 package src.Easy.Problem1;
 
+//Two Sum
+
 import java.util.HashMap;
 
 public class Solution {

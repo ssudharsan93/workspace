@@ -1,5 +1,7 @@
 package src.Easy.Problem14;
 
+// Longest Common Prefix
+
 import java.lang.Math;
 
 class Solution {

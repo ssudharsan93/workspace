@@ -1,5 +1,7 @@
 package src.Easy.Problem26;
 
+//Remove Duplicates from Sorted Array
+
 class Solution {
     public static int removeDuplicates(int[] nums) {
         int p1 = 0; 
