@@ -1,4 +1,4 @@
-package src.Problem9;
+package src.Easy.Problem9;
 
 import java.lang.*;
 import java.lang.StringBuilder;

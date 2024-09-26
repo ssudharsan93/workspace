@@ -1,4 +1,4 @@
-package src.Problem20;
+package src.Easy.Problem21;
 
 
 // Definition for singly-linked list.

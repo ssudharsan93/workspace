@@ -1,4 +1,4 @@
-package src.Problem14;
+package src.Easy.Problem14;
 
 import java.lang.Math;
 

@@ -1,4 +1,4 @@
-package src.Problem1;
+package src.Easy.Problem1;
 
 import java.util.HashMap;
 

@@ -1,5 +1,7 @@
+package src.Easy.Problem26;
+
 class Solution {
-    public int removeDuplicates(int[] nums) {
+    public static int removeDuplicates(int[] nums) {
         int p1 = 0; 
         int p2 = p1 + 1;
         int numUniqElems = 1;
