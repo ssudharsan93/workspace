@@ -1,4 +1,4 @@
-package src.Easy.Problem65;
+package src.Easy.Problem66;
 
 import java.lang.*;
 import java.util.*;
