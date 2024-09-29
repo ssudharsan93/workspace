@@ -1,4 +1,4 @@
-#!/usr/bin/env python3.11
+#!/drives/c/Users/Sudharsan/AppData/local/Programs/Python/Python312/ python
 
 from pydantic import BaseModel
 from openai import OpenAI
@@ -27,7 +27,7 @@ def generate_prompt_dataset():
             ],
         )
         return output
-    
+
 def save_dataset(extension):
     num_files = len(os.listdir(dataset_dir))
     curr_file_path = os.path.join(dataset_dir, "prompt_dataset" + str((num_files + 1)) + extension)
@@ -44,7 +44,7 @@ def main():
     dataset_dir = os.path.join(os.getcwd(), 'datasets')
     if ( not os.path.exists(dataset_dir) ):
         os.mkdir(dataset_dir)
-    create_datasets()    
+        create_datasets()
 
 if __name__ == "__main__":
     main()
