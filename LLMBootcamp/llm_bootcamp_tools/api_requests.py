@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.11
 
 from openai import OpenAI
+import marvin
 
 def make_api_request(prompt):
     client = OpenAI()
@@ -8,7 +9,6 @@ def make_api_request(prompt):
     completion = client.chat.completions.create(
         model="gpt-4",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
             {
                 "role": "user",
                 "content": prompt
@@ -34,6 +34,12 @@ def main():
     )
 
     print(completion.choices[0].message.content)
+
+    print(marvin.classify(
+    "Marvin is so easy to use!",
+    labels=["positive", "negative"],
+    ))
+
 
 if __name__ == "__main__":
     main()
