@@ -1,20 +1,9 @@
 package src.Easy.Problem110;
 
 import java.util.*;
-
-//Definition for a binary tree node.
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode() {}
-    TreeNode(int val) { this.val = val; }
-    TreeNode(int val, TreeNode left, TreeNode right) {
-         this.val = val;
-         this.left = left;
-         this.right = right;
-    }
-}
+import src.Easy.common.TreeNode;
+import src.Easy.common.TreeBuilder;
+import src.Easy.common.TreeUtils;
 
 class Solution {
     public boolean isBalanced(TreeNode root) {
@@ -78,67 +67,6 @@ class Solution {
         return sol;
     }
 
-    public TreeNode buildTreeAlt(List<Integer> input){
-        if ( input == null || input.size() == 0 ){
-            return null;
-        }
-
-        return null;
-    }
-
-    public TreeNode buildTree(List<Integer> input){
-
-        if ( input == null || input.size() == 0 ){
-            return null;
-        }
-
-        TreeNode [] nodes = new TreeNode[input.size()];
-        TreeNode curr;
-        int leftChildIdx, rightChildIdx;
-
-        int currDepth = 0;
-        int numNodesProcessed = 0;
-        int childrenAssigned = 0;
-        
-        for ( int buildIdx = 0; buildIdx < input.size(); buildIdx++ ){
-            if ( nodes[buildIdx] == null ){    
-                if ( input.get(buildIdx) != null ){
-                    nodes[buildIdx] = new TreeNode(input.get(buildIdx).intValue());
-                }
-            }
-            
-            if ( nodes[buildIdx] != null ){
-                int childStartIdx = (int) Math.pow(2, currDepth + 1) - 1;
-                int maxNumNodesNextDepth = (int) Math.pow(2, currDepth + 1);
-
-                for ( int childIdx = childStartIdx + childrenAssigned; childIdx < childStartIdx + maxNumNodesNextDepth; childIdx++ ){
-                    if ( childIdx < input.size() ) {
-                        if ( input.get(childIdx) != null ){
-                            nodes[childIdx] = new TreeNode(input.get(childIdx).intValue());    
-                        }
-                        if ( ( childrenAssigned % 2 ) == 0 ){ 
-                            nodes[buildIdx].left = nodes[childIdx];
-                            childrenAssigned = childrenAssigned + 1;
-                        } else { 
-                            nodes[buildIdx].right = nodes[childIdx];
-                            childrenAssigned = childrenAssigned + 1;
-                            break;
-                        }
-                    }
-                }
-
-            }
-
-            numNodesProcessed = numNodesProcessed + 1;
-            if ( numNodesProcessed == ( (int) Math.pow(2, currDepth + 1) - 1 ) ){
-                currDepth = currDepth + 1;
-                childrenAssigned = 0;
-            }
-        }
-
-        return nodes[0];
-    }
-
     public void printList(List<Integer> input){
 
         if ( input == null ){
@@ -158,16 +86,16 @@ class Solution {
         Solution sol = new Solution();
 
         //tc1
-        // List<Integer> testcase = new ArrayList<Integer>(Arrays.asList(3,9,20,null,null,15,7));
+        List<Integer> testcase = new ArrayList<Integer>(Arrays.asList(3,9,20,null,null,15,7));
+        sol.printList(testcase);
+        TreeNode tcRoot = TreeBuilder.buildTree(testcase);
+        System.out.println(sol.isBalanced(tcRoot));
+        
+        //tc2
+        // List<Integer> testcase = new ArrayList<Integer>(Arrays.asList(1,2,2,3,3,null,null,4,4));
         // sol.printList(testcase);
         // TreeNode tcRoot = sol.buildTree(testcase);
         // System.out.println(sol.isBalanced(tcRoot));
-        
-        //tc2
-        List<Integer> testcase = new ArrayList<Integer>(Arrays.asList(1,2,2,3,3,null,null,4,4));
-        sol.printList(testcase);
-        TreeNode tcRoot = sol.buildTree(testcase);
-        System.out.println(sol.isBalanced(tcRoot));
 
     }
 }
