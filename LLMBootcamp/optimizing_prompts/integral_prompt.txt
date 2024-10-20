@@ -1,0 +1,4 @@
+Prediction(
+    reasoning='To determine the integral of a sinusoid, we need to recall the basic properties of trigonometric functions and their integrals. A sinusoid typically refers to functions like sine and cosine. The integral of the sine function, sin(x), is -cos(x), and the integral of the cosine function, cos(x), is sin(x). Both of these results are also sinusoidal functions. Therefore, the integral of a sinusoid is another sinusoid.',
+    selection='another sinusoid'
+)

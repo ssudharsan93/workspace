@@ -1,0 +1,4 @@
+Prediction(
+    rationale="Reasoning: Let's think step by step in order to produce the answer. We need to identify the galaxies that are closest to the Milky Way Galaxy. \n\n1. The closest galaxy to the Milky Way is the **Canis Major Dwarf Galaxy**, which is approximately 25,000 light-years away from the Solar System.\n2. Another nearby galaxy is the **Sagittarius Dwarf Elliptical Galaxy**, located about 70,000 light-years from the Milky Way.\n3. The **Large Magellanic Cloud (LMC)** and the **Small Magellanic Cloud (SMC)** are also among the nearest galaxies, with distances of about 163,000 light-years and 200,000 light-years, respectively.\n4. The **Andromeda Galaxy (M31)** is the nearest spiral galaxy to the Milky Way, situated approximately 2.537 million light-years away.",
+    answer='Canis Major Dwarf Galaxy, Sagittarius Dwarf Elliptical Galaxy, Large Magellanic Cloud, Small Magellanic Cloud, Andromeda Galaxy'
+)
