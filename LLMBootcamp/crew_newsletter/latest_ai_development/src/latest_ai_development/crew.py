@@ -30,6 +30,7 @@ class LatestAiDevelopmentCrew():
 	def reviewer(self) -> Agent:
 		return Agent(
 			config=self.agents_config['reviewer'],
+			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
 			verbose=True
 		)
 	
@@ -37,6 +38,7 @@ class LatestAiDevelopmentCrew():
 	def writer(self) -> Agent:
 		return Agent(
 			config=self.agents_config['writer'],
+			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
 			verbose=True
 		)
 	
@@ -44,6 +46,7 @@ class LatestAiDevelopmentCrew():
 	def editor(self) -> Agent:
 		return Agent(
 			config=self.agents_config['editor'],
+			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
 			verbose=True
 		)
 	
@@ -51,6 +54,15 @@ class LatestAiDevelopmentCrew():
 	def coder(self) -> Agent:
 		return Agent(
 			config=self.agents_config['coder'],
+			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
+			verbose=True
+		)
+
+	@agent
+	def code_reviewer(self) -> Agent:
+		return Agent(
+			config=self.agents_config['senior_code_reviewer'],
+			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
 			verbose=True
 		)
 
@@ -58,48 +70,56 @@ class LatestAiDevelopmentCrew():
 	def research_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['research_task'],
+			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
+			output_file='research.md'
 		)
 
 	@task
 	def reviewing_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['reviewing_task'],
-			output_file='report.md'
+			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
+			output_file='research_reviewed.md'
 		)
 	
 	@task
 	def writing_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['writing_task'],
-			output_file='report.md'
+			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
+			output_file='summaries.md'
 		)
 	
 	@task
 	def editing_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['editing_task'],
-			output_file='report.md'
+			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
+			output_file='editorial.md'
 		)
 	
 	@task
 	def review_editing_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['review_editing_task'],
-			output_file='report.md'
+			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
+			output_file='reviewed_editorial.md'
 		)
 	
 	@task
 	def coding_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['coding_task'],
-			output_file='report.md'
+			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
+			output_file='raw_newsletter.py'
 		)
 
 	@task
 	def review_coding_task(self) -> Task:
 		return Task(
 			config=self.tasks_config['review_coding_task'],
-			output_file='report.md'
+			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
+			output_file='newsletter.py'
 		)
 
 	@crew
