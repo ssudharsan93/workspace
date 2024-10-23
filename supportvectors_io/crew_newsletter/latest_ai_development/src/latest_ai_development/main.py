@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 import sys
-from latest_ai_development.crew import LatestAiDevelopmentCrew
+from crew import LatestAiDevelopmentCrew
+from tools.custom_tool import RedditTool
+import dotenv
+import os
 
 # This main file is intended to be a way for you to run your
 # crew locally, so refrain from adding necessary logic into this file.
@@ -55,3 +58,10 @@ def test():
 
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")
+    
+def main():
+    dotenv.load_dotenv()
+    reddit_topic = "NVMe SSDs"
+    RedditTool()._run("NVMe SSDs")
+
+main()
