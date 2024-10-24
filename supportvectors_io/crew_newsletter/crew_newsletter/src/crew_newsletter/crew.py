@@ -1,5 +1,6 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from typing import Any, Optional, Type
 
 from crewai_tools import (
     DirectoryReadTool,
@@ -8,25 +9,33 @@ from crewai_tools import (
     WebsiteSearchTool
 )
 
-from tools import RedditTool, YoutubeTool
-
-# Uncomment the following line to use an example of a custom tool
-# from latest_ai_development.tools.custom_tool import MyCustomTool
-
-# Check our tools documentations for more information on how to use them
-# from crewai_tools import SerperDevTool
+from tools.custom_tool import RedditTool, YoutubeTool
 
 @CrewBase
-class LatestAiDevelopmentCrew():
-	"""LatestAiDevelopment crew"""
+class NewsletterCrew():
+	"""Newsletter crew"""
+
+	reddit_topic: Optional[str] = "latest ai development"
+	youtube_topic: Optional[str] = "#ai #llms"
+	max_results: Optional[int] = 10
+	reddit_tool: Type[RedditTool] = None
+	youtube_tool: Type[YoutubeTool] = None
+
+	def __init__(self, *args, **kwargs):
+		super().__init__()
+		self.reddit_topic = kwargs.get("reddit_topic", self.reddit_topic)
+		self.youtube_topic = kwargs.get("youtube_topic", self.youtube_topic)
+		self.max_results = kwargs.get("max_results", self.max_results)
+		self.reddit_tool = RedditTool(reddit_topic=self.reddit_topic, max_results=self.max_results)
+		self.youtube_tool = YoutubeTool(hashtags=self.youtube_topic, max_results=self.max_results)
 
 	@agent
 	def subject_matter_expert(self) -> Agent:
 		return Agent(
 			config=self.agents_config['subject_matter_expert'],
 			# tools=[MyCustomTool()], # Example of custom tool, loaded on the beginning of file
-			verbose=True
-			tools=[RedditTool(), YoutubeTool()]
+			verbose=True,
+			tools=[self.reddit_tool, self.youtube_tool]
 		)
 
 	# @agent
@@ -127,7 +136,7 @@ class LatestAiDevelopmentCrew():
 
 	@crew
 	def crew(self) -> Crew:
-		"""Creates the LatestAiDevelopment crew"""
+		"""Creates the Newsletter crew"""
 		return Crew(
 			agents=self.agents, # Automatically created by the @agent decorator
 			tasks=self.tasks, # Automatically created by the @task decorator

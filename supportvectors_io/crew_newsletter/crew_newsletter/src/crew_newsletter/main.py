@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-from crew import LatestAiDevelopmentCrew
+from crew import NewsletterCrew
 from tools.custom_tool import RedditTool, TwitterTool, YoutubeTool
 import dotenv
 import os
@@ -14,11 +14,21 @@ def run():
     """
     Run the crew.
     """
+
+    dotenv.load_dotenv()
+
     inputs = {
-        'topic': 'Artificial Intelligence, Machine Learning and Large Language Models',
-        'num_items': '100'
+        'topic': 'NVMe SSDs',
+        'num_items': 10
     }
-    LatestAiDevelopmentCrew().crew().kickoff(inputs=inputs)
+
+    domain = {
+        'reddit_topic': 'NVMe SSDs',
+        'youtube_topic': '#NVMe #SSDs',
+        'max_results': 10
+    }
+
+    NewsletterCrew(**domain).crew().kickoff(inputs=inputs)
 
 
 def train():
@@ -29,8 +39,15 @@ def train():
         "topic": 'Artificial Intelligence, Machine Learning and Large Language Models',
         'num_items': '100'
     }
+
+    domain = {
+        'reddit_topic': 'NVMe SSDs',
+        'youtube_topic': '#NVMe #SSDs',
+        'max_results': 10
+    }
+
     try:
-        LatestAiDevelopmentCrew().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
+        NewsletterCrew(**domain).crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
 
     except Exception as e:
         raise Exception(f"An error occurred while training the crew: {e}")
@@ -39,8 +56,15 @@ def replay():
     """
     Replay the crew execution from a specific task.
     """
+
+    domain = {
+        'reddit_topic': 'NVMe SSDs',
+        'youtube_topic': '#NVMe #SSDs',
+        'max_results': 10
+    }
+
     try:
-        LatestAiDevelopmentCrew().crew().replay(task_id=sys.argv[1])
+        NewsletterCrew(**domain).crew().replay(task_id=sys.argv[1])
 
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")
@@ -53,8 +77,15 @@ def test():
         "topic": 'Artificial Intelligence, Machine Learning and Large Language Models',
         'num_items': '100'
     }
+
+    domain = {
+        'reddit_topic': 'NVMe SSDs',
+        'youtube_topic': '#NVMe #SSDs',
+        'max_results': 10
+    }
+
     try:
-        LatestAiDevelopmentCrew().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
+        NewsletterCrew(**domain).crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
 
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")
@@ -62,14 +93,15 @@ def test():
 def main():
     dotenv.load_dotenv()
     reddit_topic = "NVMe SSDs"
-    #RedditTool()._run("NVMe SSDs")
-    TwitterTool()._run(reddit_topic)
-
-    hashtag = "#richardfeynman #physics"  # Replace with your desired hashtag
-    videos = YoutubeTool()._run(hashtag, max_results=5)
+    #RedditTool()._run(reddit_topic=reddit_topic)
+    RedditTool(reddit_topic=reddit_topic)._run()
+    
+    hashtags = "#richardfeynman #physics"  # Replace with your desired hashtag
+    #videos = YoutubeTool()._run(hashtag, max_results=5)
+    videos = YoutubeTool(hashtags=hashtags)._run()
 
     if videos:
-        print(f"Top videos for '{hashtag}':")
+        print(f"Top videos for '{hashtags}':")
         for video in videos:
             print(f"Title: {video['title']}")
             print(f"Published At: {video['published_at']}")
@@ -77,4 +109,4 @@ def main():
     else:
         print("No videos found.")
 
-main()
+run()
