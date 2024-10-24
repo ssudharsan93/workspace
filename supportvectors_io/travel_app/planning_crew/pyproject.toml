@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "planning_crew"
+version = "0.1.0"
+description = "planning_crew using crewAI"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<=3.13"
+crewai = { extras = ["tools"], version = ">=0.67.1,<1.0.0" }
+
+
+[tool.poetry.scripts]
+planning_crew = "planning_crew.main:run"
+run_crew = "planning_crew.main:run"
+train = "planning_crew.main:train"
+replay = "planning_crew.main:replay"
+test = "planning_crew.main:test"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
