@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import sys
 from crew import NewsletterCrew
-from tools.custom_tool import RedditTool, TwitterTool, YoutubeTool
+from tools.custom_tool import RedditTool, TwitterTool, YoutubeTool, SNIATool
 import dotenv
 import os
 
@@ -92,21 +92,26 @@ def test():
     
 def main():
     dotenv.load_dotenv()
-    reddit_topic = "NVMe SSDs"
-    #RedditTool()._run(reddit_topic=reddit_topic)
-    RedditTool(reddit_topic=reddit_topic)._run()
+    # reddit_topic = "NVMe SSDs"
+    # #RedditTool()._run(reddit_topic=reddit_topic)
+    # RedditTool(reddit_topic=reddit_topic)._run()
     
-    hashtags = "#richardfeynman #physics"  # Replace with your desired hashtag
-    #videos = YoutubeTool()._run(hashtag, max_results=5)
-    videos = YoutubeTool(hashtags=hashtags)._run()
+    # hashtags = "#richardfeynman #physics"  # Replace with your desired hashtag
+    # #videos = YoutubeTool()._run(hashtag, max_results=5)
+    # videos = YoutubeTool(hashtags=hashtags)._run()
 
-    if videos:
-        print(f"Top videos for '{hashtags}':")
-        for video in videos:
-            print(f"Title: {video['title']}")
-            print(f"Published At: {video['published_at']}")
-            print(f"URL: {video['url']}\n")
-    else:
-        print("No videos found.")
+    # if videos:
+    #     print(f"Top videos for '{hashtags}':")
+    #     for video in videos:
+    #         print(f"Title: {video['title']}")
+    #         print(f"Published At: {video['published_at']}")
+    #         print(f"URL: {video['url']}\n")
+    # else:
+    #     print("No videos found.")
 
-run()
+    SNIATool()._run()
+
+
+
+main()
+#run()

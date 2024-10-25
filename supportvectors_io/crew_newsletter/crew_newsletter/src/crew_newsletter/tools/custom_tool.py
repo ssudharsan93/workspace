@@ -7,6 +7,7 @@ import pprint
 import tweepy
 import requests
 import json
+from bs4 import BeautifulSoup
 
 class RedditToolSchema(BaseModel):
     title: str
@@ -139,3 +140,55 @@ class YoutubeTool(BaseTool):
             result.append(video_data)
 
         return result
+
+class SNIAToolSchema(BaseModel):
+    title: str
+    max_results: Optional[int] = 10
+
+class SNIATool(BaseTool):
+    name: str = "Returns relevant SNIA text for a given topic."
+    description: str = (
+        "Returns relevant SNIA text for a given topic including links to PDFS, article content, and more."
+    )
+    max_results: Optional[int] = 10
+
+    args_schema = SNIAToolSchema
+
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.max_results = kwargs.get("max_results", self.max_results)
+
+    def _run(self,  **kwargs: Any) -> Any:
+        """
+        Queries YouTube API for videos with specific hashtags and sorts them by relevance and date.
+
+            Parameters:
+            
+        query: Hashtag or search term to query (e.g., "#example").
+        max_results: Maximum number of videos to return (default is 10).
+
+        Returns:
+        List of videos with title, video ID, published date, and URL.
+        """
+
+        #API_KEY = os.getenv('YOUTUBE_API_KEY')
+        BASE_URL = 'https://www.snia.org/news-events'
+        # Sorted by date (most recent first)
+        max_results = kwargs.get("max_results", self.max_results)
+
+        #params = {'part': 'snippet','q': query,'type': 'video','order': 'date', 'maxResults': max_results,'key': API_KEY}
+
+        #response = requests.get(BASE_URL, params=params)
+        response = requests.get(BASE_URL)
+
+        if response.status_code != 200:
+            print(f"Error: {response.status_code} - {response.text}")
+            return None
+        
+        soupified = BeautifulSoup(response.text)
+        
+        pprint.pprint(soupified.get_text())
+        pprint.pprint(soupified.find_all('a'))
+
+        return None
