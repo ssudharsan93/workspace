@@ -10,7 +10,7 @@ import json
 from bs4 import BeautifulSoup
 
 class RedditToolSchema(BaseModel):
-    title: str
+    title: Optional[str] = None
     reddit_topic: Optional[str] = "latest ai development"
     max_results: Optional[int] = 10
 
@@ -80,14 +80,14 @@ class TwitterTool(BaseTool):
 
 
 class YoutubeToolSchema(BaseModel):
-    title: str
+    title: Optional[str] = None
     hashtags: Optional[str] = "#ai #llms"
     max_results: Optional[int] = 10
 
 class YoutubeTool(BaseTool):
-    name: str = "Returns tweets for a given topic."
+    name: str = "Returns youtube urls for a given topic."
     description: str = (
-        "Returns twitter text for a given topic that is requested by a user to be investigated."
+        "Returns youtube urls for a given topic that is requested by a user to be investigated."
     )
     hashtags: Optional[str] = "#ai #llms"
     max_results: Optional[int] = 10
