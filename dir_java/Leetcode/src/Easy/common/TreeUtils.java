@@ -11,10 +11,50 @@ public class TreeUtils {
         }
 
         LinkedList<TreeNode> toBeProcessed = new LinkedList<>();
+        LinkedList<TreeNode> processing = new LinkedList<>();
+        Set<TreeNode> nodesAtDepth = new HashSet<TreeNode>();
+
         toBeProcessed.add(root);
 
-        System.out.print("Depth 0 :\t");
-        System.out.print(root.val);
+        int depth = 0;
+
+        while ( !toBeProcessed.isEmpty() ){
+            int numNodesToBeProcessed = toBeProcessed.size();
+
+            for ( int queueIdx = 0; queueIdx < numNodesToBeProcessed; queueIdx++ ){
+                TreeNode nodeToBeProcessed = toBeProcessed.removeLast();
+                processing.addFirst(nodeToBeProcessed);
+                nodesAtDepth.add(nodeToBeProcessed);
+            }
+
+            if ( ( nodesAtDepth.size() == 1 ) && ( nodesAtDepth.contains(null) ) ){ break; }
+            
+            System.out.println("");
+            System.out.println("Depth " + depth + " :\t");
+            
+            while ( !processing.isEmpty() ){
+                TreeNode curr = processing.removeLast();
+
+                if ( curr == null ) {
+                    System.out.print("null");
+                    System.out.print("\t");
+                    toBeProcessed.addFirst(null);
+                    toBeProcessed.addFirst(null);
+                    continue;
+                }
+
+                System.out.print(curr.val);
+                System.out.print("\t");
+
+                toBeProcessed.addFirst(curr.left);
+                toBeProcessed.addFirst(curr.right);
+            }
+
+            depth = depth + 1;
+            nodesAtDepth.clear();
+        }
+
+        System.out.println("\n");
 
     }
 
