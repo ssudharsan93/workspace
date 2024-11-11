@@ -1,10 +1,10 @@
 package src.Easy.Problem112;
 
 import java.util.*;
-import src.Easy.common.TreeNode;
-import src.Easy.common.TreeBuilder;
-import src.Easy.common.TreeUtils;
-import src.Easy.common.ListUtils;
+import src.common.TreeNode;
+import src.common.TreeBuilder;
+import src.common.TreeUtils;
+import src.common.ListUtils;
 
 class Solution {
 

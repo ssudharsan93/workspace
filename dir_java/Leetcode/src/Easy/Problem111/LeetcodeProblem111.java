@@ -1,9 +1,9 @@
 package src.Easy.Problem111;
 
 import java.util.*;
-import src.Easy.common.TreeNode;
-import src.Easy.common.TreeBuilder;
-import src.Easy.common.TreeUtils;
+import src.common.TreeNode;
+import src.common.TreeBuilder;
+import src.common.TreeUtils;
 
 class Solution {
     public int minDepth(TreeNode root) {
