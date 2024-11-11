@@ -1,4 +1,4 @@
-package src.Easy.common;
+package src.common;
 
 import java.util.*;
 

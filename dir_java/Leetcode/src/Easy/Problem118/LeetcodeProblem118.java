@@ -2,8 +2,8 @@ package src.Easy.Problem118;
 
 import java.util.*;
 import java.math.BigInteger;
-import src.Easy.common.ListUtils;
-import src.Easy.common.MathUtils;
+import src.common.ListUtils;
+import src.common.MathUtils;
 
 class Solution {
 
