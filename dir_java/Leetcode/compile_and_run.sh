@@ -21,7 +21,6 @@ cmd3="java -jar bin/LeetcodeProblem$prob_num.jar"
 
 echo "Main-Class: src.${difficulty}.Problem$prob_num.Solution" > manifest.txt
 
-
 $cmd1
 $cmd2
 $cmd3
