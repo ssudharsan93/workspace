@@ -58,6 +58,45 @@ public class TreeUtils {
 
     }
 
+    public LinkedList<LinkedList<TreeNode>> altBFSTraversal(TreeNode root){
+        if ( root == null ){ return null; }
+
+        LinkedList<TreeNode> toProcess = new LinkedList<TreeNode>();
+        LinkedList<TreeNode> processingNow = new LinkedList<TreeNode>();
+        LinkedList<LinkedList<TreeNode>> listTraversedNodes = new LinkedList<>();
+
+        toProcess.addLast(root);
+        TreeNode curr;
+
+        LinkedList<TreeNode> currDepthNodes = new LinkedList<TreeNode>();
+
+        while ( !toProcess.isEmpty() ){
+            processingNow.addLast(toProcess.removeFirst());
+
+            if ( toProcess.isEmpty() ){
+                while ( !processingNow.isEmpty() ) {
+                    curr = processingNow.removeFirst();
+                    currDepthNodes.addLast(curr);
+
+                    if ( processingNow.isEmpty() ){
+                        listTraversedNodes.add(currDepthNodes);
+                        currDepthNodes = new LinkedList<TreeNode>();
+                    }
+
+                    if ( curr.left != null ){
+                        toProcess.addLast(curr.left);
+                    }
+
+                    if ( curr.right != null ){
+                        toProcess.addLast(curr.right);
+                    }
+                }
+            }
+        }
+
+        return listTraversedNodes;
+    }
+
     public static List<TreeNode> bfsTraversal(TreeNode root, int numNodes){
         if ( root == null || numNodes == 0 ){ return null; }
         
