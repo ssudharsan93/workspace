@@ -58,10 +58,10 @@ public class TreeUtils {
 
     }
 
-    public static List<Integer> treeToList(TreeNode root, int numNodes){
+    public static List<TreeNode> bfsTraversal(TreeNode root, int numNodes){
         if ( root == null || numNodes == 0 ){ return null; }
         
-        List<Integer> sol = new ArrayList<Integer>();
+        List<TreeNode> sol = new ArrayList<>();
         LinkedList<TreeNode> toBeProcessed = new LinkedList<>();
         toBeProcessed.addFirst(root);
 
@@ -70,13 +70,51 @@ public class TreeUtils {
         for ( int treeIdx = 0; treeIdx < numNodes; ){
             curr = toBeProcessed.removeLast();
             if ( curr != null ){
-                sol.add(curr.val);
+                sol.add(curr);
                 toBeProcessed.addFirst(curr.left);
                 toBeProcessed.addFirst(curr.right);
-                treeIdx = treeIdx + 1;
-            } else { sol.add(null); }
+            } else {
+                sol.add(null);
+            }
+
+            treeIdx = treeIdx + 1;
         }
 
+        toBeProcessed = null;
+
         return sol;
+    }
+
+    public static List<Integer> treeToIntegerList(TreeNode root, int numNodes){
+        List<TreeNode> bfsTraversedNodes = new ArrayList<TreeNode>(TreeUtils.bfsTraversal(root, numNodes));
+        List<Integer> intList = new ArrayList<Integer>();
+
+        TreeNode curr;
+        for ( int listIdx = 0; listIdx < numNodes; listIdx++ ){
+            curr = bfsTraversedNodes.get(listIdx);
+            if ( curr != null ){ 
+                intList.add(Integer.valueOf(curr.val));
+            } else { 
+                intList.add(null);
+            }
+        }
+
+        return intList;
+
+    }
+
+    public static TreeNode getNode(TreeNode root, int numNodes, int target){
+        List<TreeNode> bfsTraversedNodes = new ArrayList<TreeNode>(TreeUtils.bfsTraversal(root, numNodes));
+
+        TreeNode curr;
+
+        for ( int listIdx = 0; listIdx < numNodes; listIdx++ ){
+            curr = bfsTraversedNodes.get(listIdx);
+            if ( curr.val == target ) {
+                return curr;
+            }
+        }
+
+        return null;
     }
 }
