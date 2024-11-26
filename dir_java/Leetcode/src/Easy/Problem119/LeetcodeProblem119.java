@@ -39,7 +39,7 @@ class Solution {
     public void printListofLists(List<List<Integer>> input){
         System.out.println("[");
         for ( int listIdx = 0; listIdx < input.size(); listIdx++ ){
-            ListUtils.printList(input.get(listIdx));
+            ListUtils.printIntegerList(input.get(listIdx));
             System.out.println("");
         }
         System.out.println("]");
@@ -59,8 +59,8 @@ class Solution {
         int rowIdx = 4;
         List<Integer> orig = sol.generate(rowIdx + 1).get(rowIdx);
         List<Integer> result = sol.getRow(rowIdx);
-        ListUtils.printList(orig);
-        ListUtils.printList(result);
+        ListUtils.printIntegerList(orig);
+        ListUtils.printIntegerList(result);
 
         //tc3
         // int rowIdx = 7;

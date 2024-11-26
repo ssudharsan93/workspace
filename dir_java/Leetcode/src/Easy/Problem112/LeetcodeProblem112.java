@@ -38,7 +38,7 @@ class Solution {
         //tc1
         int targetSum = 22;
         List<Integer> testcase = new ArrayList<Integer>(Arrays.asList(5,4,8,11,null,13,4,7,2,null,null,null,1));
-        ListUtils.printList(testcase);
+        ListUtils.printIntegerList(testcase);
         TreeNode tcRoot = TreeBuilder.buildTree(testcase);
         TreeUtils.printTree(tcRoot);
         System.out.println(sol.hasPathSum(tcRoot, targetSum));
@@ -46,14 +46,14 @@ class Solution {
         //tc2
         // int targetSum = -5;
         // List<Integer> testcase = new ArrayList<Integer>(Arrays.asList(-2,null,-3));
-        // sol.printList(testcase);
+        // sol.printIntegerList(testcase);
         // TreeNode tcRoot = TreeBuilder.buildTree(testcase);
         // TreeUtils.printTree(tcRoot);
         // System.out.println(sol.hasPathSum(tcRoot, targetSum));
         
         //tc3
         // List<Integer> testcase = new ArrayList<Integer>(Arrays.asList(1,2,2,3,3,null,null,4,4));
-        // sol.printList(testcase);
+        // sol.printIntegerList(testcase);
         // TreeNode tcRoot = sol.buildTree(testcase);
         // System.out.println(sol.minDepth(tcRoot));
         // System.out.println(sol.altMinDepth(tcRoot));

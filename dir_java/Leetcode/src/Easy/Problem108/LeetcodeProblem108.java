@@ -4,6 +4,7 @@ import java.util.*;
 import src.common.TreeNode;
 import src.common.TreeBuilder;
 import src.common.TreeUtils;
+import src.common.ListUtils;
 
 class Solution {
     public TreeNode sortedArrayToBST(int[] nums) {
@@ -28,29 +29,14 @@ class Solution {
         return curr;
     }
 
-    public void printList(List<Integer> input){
-
-        if ( input == null ){
-            System.out.print("[ ]");
-            return;
-        }
-
-        System.out.print("[ ");
-        for ( int printIdx = 0; printIdx < input.size(); printIdx++ ){
-            System.out.print(input.get(printIdx));
-            System.out.print(" ");
-        }
-        System.out.println("]");
-    }
-
     public static void main(String[] args){ 
         Solution sol = new Solution();
 
         //tc1
         int [] testcase = new int[]{-10,-3,0,5,9};
         TreeNode tc = sol.sortedArrayToBST(testcase);
-        List<Integer> tcList = TreeUtils.treeToList(tc, testcase.length);
-        sol.printList(tcList);
+        List<Integer> tcList = TreeUtils.treeToIntegerList(tc, testcase.length);
+        ListUtils.printIntegerList(tcList);
 
         //tc2
         // int [] testcase = new int[]{1, 3};

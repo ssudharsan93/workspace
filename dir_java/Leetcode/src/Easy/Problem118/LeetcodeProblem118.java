@@ -31,7 +31,7 @@ class Solution {
         public void printListofLists(List<List<Integer>> input){
             System.out.println("[");
             for ( int listIdx = 0; listIdx < input.size(); listIdx++ ){
-                ListUtils.printList(input.get(listIdx));
+                ListUtils.printIntegerList(input.get(listIdx));
                 System.out.println("");
             }
             System.out.println("]");

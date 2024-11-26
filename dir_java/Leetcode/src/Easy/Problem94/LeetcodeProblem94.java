@@ -4,6 +4,7 @@ import java.util.*;
 import src.common.TreeNode;
 import src.common.TreeBuilder;
 import src.common.TreeUtils;
+import src.common.ListUtils;
 
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
@@ -45,21 +46,6 @@ class Solution {
         return result;
     }
 
-    public void printList(List<Integer> input){
-
-        if ( input == null ){
-            System.out.print("[ ]");
-            return;
-        }
-
-        System.out.print("[ ");
-        for ( int printIdx = 0; printIdx < input.size(); printIdx++ ){
-            System.out.print(input.get(printIdx));
-            System.out.print(" ");
-        }
-        System.out.println("]");
-    }
-
     public static void main(String[] args){ 
         Solution sol = new Solution();
         
@@ -68,7 +54,7 @@ class Solution {
         //List<Integer> testcase = new ArrayList<Integer>(Arrays.asList());
         //List<Integer> testcase = new ArrayList<Integer>(Arrays.asList(1));
 
-        sol.printList(testcase);
+        ListUtils.printIntegerList(testcase);
 
         System.out.println("");
 
@@ -78,7 +64,7 @@ class Solution {
 
         List<Integer> result = sol.inorderTraversal(testcaseRoot);
 
-        sol.printList(result);
+        ListUtils.printIntegerList(result);
         
     }
 }
