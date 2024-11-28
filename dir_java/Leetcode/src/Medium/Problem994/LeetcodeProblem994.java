@@ -3,6 +3,11 @@ package src.Medium.Problem994;
 import java.util.*;
 import src.common.ListUtils;
 
+#TODO
+//Need to reimplement this algorithm and change it
+// from duplicating an array to using instead a Deque
+// that keeps track of the rotten oranges found on this loop.
+
 class Solution {
     public int orangesRotting(int[][] grid) {
         int numSteps = 0;

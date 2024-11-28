@@ -1,6 +1,8 @@
 package src.Hard.Problem42;
 
-//Remove Element
+#TODO
+//Need to write a description of why this algorithm works.
+// Also need to enumerate the key steps of this algorithm.
 
 class Solution {
     public int trap(int[] height) {
