@@ -8,13 +8,15 @@ address between <Address></Address> tags below. The overview must contain the fo
 1. Detailed property information:
     a. size / dimensions.
     b. number of rooms.
-    c. nnumber of bathrooms.
+    c. number of bathrooms.
     d. estimated value.
 2. A detailed list of nearby schools with relevant details:
     a. name
     b. distance
     c. rating
 3. Pros / Cons related to this area.
+
+Don't include the <Address></Address> tags in your response.
 
 ### Style ###
 The style of this response should be informative, professional and thorough. 

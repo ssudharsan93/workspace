@@ -1,7 +1,6 @@
 #!/usr/bin/env python3.11
 
 from openai import OpenAI
-import marvin
 
 def make_api_request(prompt):
     client = OpenAI()
