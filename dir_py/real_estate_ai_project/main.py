@@ -20,7 +20,7 @@ def write_output_file(output_dir_file_path : pathlib.Path, address : dict, conte
     address_str = f"{address['street_number']}_{street_name}_{address['city']}_{address['state']}_{address['zip_code']}"
     output_file_path = pathlib.Path(output_dir_file_path, f"{address_str}_property_info.md").resolve()
     try:
-        with open(output_file_path, "r") as output_file:
+        with open(output_file_path, "w+") as output_file:
             output_file.write(content)
         return
     except FileNotFoundError:
@@ -47,6 +47,7 @@ def generate_address_str(address : dict) -> str:
 
 def main():    
     config_path = pathlib.Path(CWD, "config")
+    output_path = pathlib.Path(CWD, "output")
     prompt_info = read_prompt(config_path)
     _CONF = proj_utils.load_config_yaml(pathlib.Path(config_path, "conf.yaml"))
     main_address = _CONF["address"]
@@ -55,8 +56,8 @@ def main():
     qualified_prompt = base_prompt.replace("{ADDRESS}", f" {address_str} ")
     pprint.pprint(qualified_prompt)
 
-    #response = proj_api.send_prompt(qualified_prompt)
-    #write_output_file(config_path, _CONF, response)
+    response = proj_api.make_api_request(qualified_prompt)
+    write_output_file(output_path, main_address, response)
 
 if __name__ == "__main__":
     main()
