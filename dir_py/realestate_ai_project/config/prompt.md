@@ -28,4 +28,9 @@ Your audience is other real estate agents, who will review the information and t
 on sales strategies.
 
 ### Response ###
-The format of the response should be as follows:
+The format of the response should be in markdown format and should be able to be viewed
+on a browser.
+
+### Input ###
+
+<Address>{ADDRESS}</Address>
