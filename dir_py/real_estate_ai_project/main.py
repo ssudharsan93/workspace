@@ -36,12 +36,14 @@ def write_output_file(
         output_file.write(content)
     return
 
+# Read the LLM prompt to generate a property information html file 
 def read_html_prompt(file_path : pathlib.Path) -> dict:
     prompt_file_path = pathlib.Path(file_path, "html_prompt.md").resolve()
     with open(prompt_file_path, "r") as f:
         prompt = f.read()
     return ( {"title" : prompt_file_path.name, "text" : prompt} )
 
+# Read the LLM prompt to generate a property information markdown file 
 def read_markdown_prompt(file_path : pathlib.Path) -> dict:
     prompt_file_path = pathlib.Path(file_path, "prompt.md").resolve()
     with open(prompt_file_path, "r") as f:
@@ -57,9 +59,11 @@ def generate_random_address() -> dict:
         "zip_code" : np.random.randint(10000, 99999).astype(str)
     }
 
+# Generate an Address String from a dictionary of address information.
 def generate_address_str(address : dict) -> str:
     return f"{address['street_number']} {address['street_name']}, {address['city']}, {address['state']} {address['zip_code']}"
 
+# Generate an output file for a given address that specifies the property information.
 def gen_output_file(
     config_path : pathlib.Path, 
     output_path : pathlib.Path, 
@@ -88,6 +92,14 @@ def gen_output_file(
     response = proj_api.make_api_request(qualified_prompt)
     write_output_file(output_path, address_str, response, file_type)
 
+# Prompt the user for an address if no address is provided through either a .yaml file or the --address option.
+def prompt_user_for_address() -> str:
+    input_str = "Enter an address (in the format: \"123 Main Street, New York, NY 10001\")\n" +\
+        "include a street number, street name, city, state, and zip code.\n" +\
+        "(Make sure to wrap your address in double quotes): "
+    address = input(input_str).replace('"', "")
+    return address
+
 def main():
     argparser = argparse.ArgumentParser(
         prog="real_estate_ai_project",
@@ -105,15 +117,17 @@ def main():
     config_path = pathlib.Path(CWD, "config")
     output_path = pathlib.Path(CWD, "output")
 
-    address = None
+    address = str()
 
     if args.address:
         address = args.address
-    else: 
+    elif os.path.exists(pathlib.Path(config_path, "conf.yaml")):
         _CONF = proj_utils.load_config_yaml(pathlib.Path(config_path, "conf.yaml"))
-        address = _CONF["address"]
+        address = generate_address_str(_CONF["address"])
+    else: 
+        address = prompt_user_for_address()
 
-    if address is not None:
+    if address:
         pprint.pprint(f"Generating property info (in a markdown file) for address: {address}")
         logging.info(f"Generating property info (in a markdown file) for address: {address}")
         gen_output_file(config_path, output_path, address)
