@@ -20,8 +20,9 @@ This API key will be used to submit requests to the Open AI API.
 
 #### Running ####
 To run this script simply run ```python main.py```
-You can provide an address to this script via the command line with the --address argument.
-You can also provide the address in a file that must be named `conf.yaml` and placed in 
+You can provide an address to this script via the command line with the ```--address``` argument.
+i.e. ```python main.py --address 123 Main Street New York City, New York 10001```
+You can also provide the address in a file that must be named ```conf.yaml``` and placed in 
 the config/ directory in this project folder.
 
 The conf.yaml file must contain the following structure ( An example address is provided for your convenience ):
