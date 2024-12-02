@@ -1,7 +1,8 @@
 #### Installation ####
 1. Make sure Python 3.12 is installed in your machine.
-2. Navigate to the real_estate_ai_project folder.
-3. Run pip install -r requirements.txt
+2. Clone this repository.
+3. Navigate to the real_estate_ai_project folder.
+4. Run pip install -r requirements.txt
 
 #### Description ####
 This script takes in an address argument and makes the necessary substitutions
